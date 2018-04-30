@@ -1,0 +1,22 @@
+{
+    "plugins": [
+        "react"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "comma-dangle": [2, "never"],
+        "no-console": 0,
+        "no-debugger": 2
+    },
+    "extends": [
+        "prettier",
+        "prettier/react"
+    ]
+}
