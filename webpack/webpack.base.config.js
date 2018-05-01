@@ -2,8 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const resolveConfig = require('./resolve.config.js');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV !== 'production';
 
 const baseConfig = merge(resolveConfig, {
     context: path.resolve(__dirname + '/../'),
@@ -27,24 +28,28 @@ const baseConfig = merge(resolveConfig, {
             },
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract(
-                  {
-                    fallback: 'style-loader?sourceMap',
-                    use: ['css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]', 'sass-loader?sourceMap']
-                  })
+                use: [
+                    devMode
+                        ? 'style-loader?sourceMap'
+                        : MiniCssExtractPlugin.loader,
+                          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+                          'sass-loader?sourceMap'
+                ],
             }
         ]
     },
 
-    plugins: [ 
-        new ExtractTextPlugin({filename: 'style.css'}),
-        new HtmlWebpackPlugin({
-            inject: false,
-            hash: true,
-            template: './src/index.html',
-            filename: 'index.html'
-        })
-    ]
+plugins: [
+    new HtmlWebpackPlugin({
+        inject: false,
+        hash: true,
+        template: './src/index.html',
+        filename: 'index.html'
+    }),
+    new MiniCssExtractPlugin({
+        chunkFilename: devMode ? 'style.css' : '[id].[hash].css'
+    })
+]
 });
 
 module.exports = baseConfig;
