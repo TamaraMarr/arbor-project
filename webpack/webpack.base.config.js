@@ -3,12 +3,13 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const resolveConfig = require('./resolve.config.js');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const baseConfig = merge(resolveConfig, {
     context: path.resolve(__dirname + '/../'),
 
     output: {
-        path: path.resolve(__dirname, '../public'),
+        path: path.resolve(__dirname, './public'),
         filename: "bundle.js",
         publicPath: '/'
     },
@@ -20,32 +21,30 @@ const baseConfig = merge(resolveConfig, {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: ["style-loader"]
-            },
-            {
-                test: /\.css$/,
-                loader: "css-loader",
-                query: {
-                    modules: true,
-                    localIdentName: "[name]__[local]___[hash:base64:5]"
-                }
-                
-            },
-            {
                 test: /\.js$/,
                 use: ["babel-loader", "eslint-loader"],
                 exclude: /node_modules/
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract(
+                  {
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
+                  })
             }
         ]
     },
 
-    // plugins: [
-    //     new ExtractTextPlugin({
-    //         filename: 'styles.css',
-    //         allChunks: true
-    //     })
-    // ]
+    plugins: [ 
+        new ExtractTextPlugin({filename: 'style.css'}),
+        new HtmlWebpackPlugin({
+            inject: false,
+            hash: true,
+            template: './src/index.html',
+            filename: 'index.html'
+        })
+    ]
 });
 
 module.exports = baseConfig;
