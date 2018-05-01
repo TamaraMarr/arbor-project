@@ -25,7 +25,7 @@ const config = merge(baseConfig, {
     },
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin('styles.css', {
+        new webpack.HotModuleReplacementPlugin('style.css', {
             allChunks: true
         })
     ]
