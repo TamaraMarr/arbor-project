@@ -29,8 +29,8 @@ const baseConfig = merge(resolveConfig, {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract(
                   {
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
+                    fallback: 'style-loader?sourceMap',
+                    use: ['css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]', 'sass-loader?sourceMap']
                   })
             }
         ]
