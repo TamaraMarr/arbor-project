@@ -1,16 +1,10 @@
 {
     "presets": [
         "env",
-        "es2015",
-        "es2017",
-        "react",
-        "stage-0"
+        "stage-0",
+        "react"
     ],
     "plugins": [
-        ["react-css-modules", {
-            "webpackHotModuleReloading": true,
-            "context": "./"
-        }],
         "react-hot-loader/babel",
         "transform-class-properties",
         "syntax-async-functions",

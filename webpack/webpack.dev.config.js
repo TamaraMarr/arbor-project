@@ -9,22 +9,25 @@ const config = merge(baseConfig, {
     entry: {
         src: [
             'webpack/hot/only-dev-server',
-            '../index.js'
+            './index.js'
         ]
     },
 
     devtool: 'cheap-module-eval-source-map',
 
     devServer: {
-        hot: true,
-        port: 3000,
         contentBase: path.resolve(__dirname, '../public'),
         publicPath: '/',
+        hot: true,
+        noInfo: false,
+        port: 3000,
         historyApiFallback: true
     },
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin('styles.css', {
+            allChunks: true
+        })
     ]
 });
 
