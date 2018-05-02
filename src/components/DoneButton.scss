@@ -1,0 +1,10 @@
+@import "../scss/constants";
+
+.button {
+    margin: 25px 10px;
+    width: 100%;
+    background: $accent-color;
+    &:hover {
+        background: orange;
+    }
+}

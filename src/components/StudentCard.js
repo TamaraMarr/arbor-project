@@ -19,9 +19,9 @@ export default class StudentCard extends Component {
                     <div className={styles.statusDiv}>
                         {!present && !late && !absent
                             ? <Fragment>
-                                <i className={`fas fa-check ${styles.grey}`}></i>
-                                <i className={`fas fa-stopwatch ${styles.grey}`}></i>
-                                <i className={`fas fa-times ${styles.grey}`}></i>
+                                <i className={`fas fa-check ${styles.grey}`} data-id={this.props.studentInfo.id} onClick={this.props.setStatus}></i>
+                                <i className={`fas fa-stopwatch ${styles.grey}`} data-id={this.props.studentInfo.id} onClick={this.props.setStatus}></i>
+                                <i className={`fas fa-times ${styles.grey}`} data-id={this.props.studentInfo.id} onClick={this.props.setStatus}></i>
                               </Fragment>
                             : ""}
                         {present && <div className={styles.status}><i className={`fas fa-check ${styles.green}`}></i><span>Present</span></div>}

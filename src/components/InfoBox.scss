@@ -1,0 +1,14 @@
+@import '../scss/constants';
+
+.wrapper {
+    width: 100%;
+    margin: 15px;
+    box-sizing: border-box;
+    padding: 10px 10px 10px 25px;
+    border-radius: 15px;
+    background-color: $secondary-color;
+    color: $main-color;
+    p:last-child {
+        margin: 0;
+    }
+}

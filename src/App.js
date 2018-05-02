@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { Component } from "react";
 
 import Header from "Components/Header";
 import Footer from "Components/Footer";
