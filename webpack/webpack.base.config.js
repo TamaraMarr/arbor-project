@@ -32,24 +32,32 @@ const baseConfig = merge(resolveConfig, {
                     devMode
                         ? 'style-loader?sourceMap'
                         : MiniCssExtractPlugin.loader,
-                          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-                          'sass-loader?sourceMap'
+                    'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+                    'sass-loader?sourceMap'
                 ],
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                  }
+                ]
             }
         ]
     },
 
-plugins: [
-    new HtmlWebpackPlugin({
-        inject: false,
-        hash: true,
-        template: './src/index.html',
-        filename: 'index.html'
-    }),
-    new MiniCssExtractPlugin({
-        chunkFilename: devMode ? 'style.css' : '[id].[hash].css'
-    })
-]
+    plugins: [
+        new HtmlWebpackPlugin({
+            inject: false,
+            hash: true,
+            template: './src/index.html',
+            filename: 'index.html'
+        }),
+        new MiniCssExtractPlugin({
+            chunkFilename: devMode ? 'style.css' : '[id].[hash].css'
+        })
+    ]
 });
 
 module.exports = baseConfig;

@@ -1,0 +1,49 @@
+@import '../scss/constants';
+
+.wrapper {
+    padding: 5px;
+    .studentCard {
+        position: relative;
+        box-sizing: border-box;
+        margin: 3px 0;
+        padding: 5px;
+        border: solid 1px $light-color;
+        .studentImage {
+            width: 100%;
+        }
+        .statusDiv {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            min-height: 30px;
+            i {
+                font-size: 1.2rem;
+                margin: 5px 0;
+            }
+            .status {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                span {
+                    margin-left: 10px;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    color: rgb(83, 83, 83);
+                }
+            }
+            .green {
+                color: rgb(0, 150, 0);
+                justify-self: center;
+            }
+            .grey {
+                color: rgb(153, 152, 152);
+            }
+            .orange {
+                color: rgb(255, 157, 0);
+            }
+            .red {
+                color: red;
+            }
+        }
+    }
+}
