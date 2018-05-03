@@ -14,21 +14,17 @@ export default class InfoBox extends Component {
         }
     }
 
-    componentDidMount() {
-        this.calculateInfo();
+    componentWillReceiveProps(nextProps) {
+        this.calculateInfo(nextProps.info);
     }
 
-    componentWillReceiveProps() {
-        this.calculateInfo();
-    }
-
-    calculateInfo = () => {
+    calculateInfo = (info) => {
         let present = 0,
             late = 0,
             absent = 0,
             unmarked = 0;
 
-        this.props.info.forEach((student) => {
+        info.forEach((student) => {
             if (student.attendanceMark.present) {
                 present++;
             } else if (student.attendanceMark.late) {
@@ -49,6 +45,7 @@ export default class InfoBox extends Component {
     }
 
     render() {
+        console.log(this.props.info)
         return (
             <div className={`col-5 ${styles.wrapper}`}>
                 <p>Present: {this.state.present}</p>

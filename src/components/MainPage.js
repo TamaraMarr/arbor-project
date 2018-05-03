@@ -61,6 +61,19 @@ export default class MainPage extends Component {
         })
     }
 
+    resetData = () => {
+        const students = this.state.students.map((student) => {
+            student.attendanceMark.present = false;
+            student.attendanceMark.late = false;
+            student.attendanceMark.absent = false;
+            return student;
+        })
+
+        this.setState({
+            students
+        })
+    }
+
     render() {
         return (
             <main className="container">
@@ -73,7 +86,7 @@ export default class MainPage extends Component {
                     <InfoBox info={this.state.students} />
                     <div className={`col-6 ${styles.buttons}`}>
                         <DoneButton />
-                        <ResetButton />
+                        <ResetButton resetData={this.resetData} />
                     </div>
                 </div>
             </main>

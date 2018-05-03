@@ -9,7 +9,7 @@ export default class ResetButton extends Component {
 
     render() {
         return (
-            <input className={`col-4 btn ${styles.button}`} type="button" value="Reset" />
+            <input className={`col-4 btn ${styles.button}`} type="button" value="Reset" onClick={this.props.resetData} />
         )
     }
 }
